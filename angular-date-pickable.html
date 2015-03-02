@@ -1,0 +1,25 @@
+<table>
+  <thead>
+    <tr>
+      <th colspan="2">&lt;</th>
+      <th colspan="3">Month, Year</th>
+      <th colspan="2">&gt;</th>
+    </tr>
+
+    <tr>
+      <th>Su</th>
+      <th>Mo</th>
+      <th>Tu</th>
+      <th>We</th>
+      <th>Th</th>
+      <th>Fr</th>
+      <th>Sa</th>
+    </tr>
+  <thead>
+
+  <tbody>
+    <tr ng-repeat="week in vm.weeks">
+      <td ng-repeat="day in week">{{ day | date:'dd' }}</td>
+    </tr>
+  </tbody>
+</thead>
