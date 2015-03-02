@@ -1,8 +1,8 @@
-<table>
+<table ng-repeat="visibleDate in vm.visibleDates">
   <thead>
     <tr>
       <th colspan="2" ng-click="vm.setPrevMonth()">&lt;</th>
-      <th colspan="3">{{ vm.visibleDate.toDate() | date:'MMM yyyy'}}</th>
+      <th colspan="3">{{ visibleDate.toDate() | date:'MMM yyyy'}}</th>
       <th colspan="2" ng-click="vm.setNextMonth()">&gt;</th>
     </tr>
 
@@ -18,7 +18,7 @@
   <thead>
 
   <tbody>
-    <tr ng-repeat="week in vm.generateWeeks(vm.visibleDate)">
+    <tr ng-repeat="week in vm.generateWeeks(visibleDate)">
       <td ng-repeat="day in week" ng-click="vm.selectDate(day)">{{ day | date:'dd' }}</td>
     </tr>
   </tbody>

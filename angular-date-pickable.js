@@ -20,16 +20,26 @@ function jbDatePickableDirective () {
     vm.generateWeeks = generateWeeks;
 
     //
+    updateVisibleDates();
+
+    function updateVisibleDates () {
+      vm.visibleDates = [
+        vm.visibleDate,
+        vm.visibleDate.clone().add(1, 'month').startOf('month')
+      ] 
+    }
     
 
     var weeksCache = {};
 
     function setPrevMonth() {
       vm.visibleDate = vm.visibleDate.add(-1, 'month').startOf('month'); 
+      updateVisibleDates();
     }
 
     function setNextMonth() {
       vm.visibleDate = vm.visibleDate.add(1, 'month').startOf('month'); 
+      updateVisibleDates();
     }
 
     function generateWeeks (date) {
@@ -41,7 +51,7 @@ function jbDatePickableDirective () {
       if (weeksCache[cacheKey])
         return weeksCache[cacheKey];
 
-      var range = moment().range(start, end);
+      var range = moment().range(start.startOf('week'), end.endOf('week'));
 
       var weeks = [];
       range.by('weeks', function(week) {
