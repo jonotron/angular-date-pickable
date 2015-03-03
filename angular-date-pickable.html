@@ -20,7 +20,8 @@
 
     <tbody>
       <tr ng-repeat="week in vm.generateWeeks(visibleDate)">
-        <td ng-repeat="day in week" ng-click="vm.selectDate(day)" ng-class="{'is-in-range': vm.isInRange(day) }">
+        <td ng-repeat="day in week" ng-click="vm.selectDate(day)" 
+          ng-class="{'is-in-range': vm.isInRange(day), 'is-selected': vm.isSelected(day) }">
           {{ day | date:'dd' }}
         </td>
       </tr>

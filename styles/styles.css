@@ -13,5 +13,11 @@ table.pickable-month td, table.pickable-month th {
 }
 
 td.is-in-range {
+  font-weight: bold;
   background-color: #ccffcc;
+}
+
+td.is-selected {
+  font-weight: bold;
+  box-shadow: inset 0px 0px 0px 2px black;
 }

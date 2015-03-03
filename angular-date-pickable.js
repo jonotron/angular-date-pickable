@@ -19,6 +19,7 @@ function jbDatePickableDirective () {
     vm.selectDate = selectDate;
     vm.generateWeeks = generateWeeks;
     vm.isInRange = isInRange;
+    vm.isSelected = isSelected;
 
     vm.visibleMonths = 2;
 
@@ -76,6 +77,7 @@ function jbDatePickableDirective () {
       if (vm.startDate && vm.endDate) {
         vm.endDate = null;
         vm.startDate = null;
+        vm.selectedDateRange = null;
       }
 
       // both dates are unselected, select the start date
@@ -107,6 +109,17 @@ function jbDatePickableDirective () {
       var is = vm.selectedDateRange.contains(date);
 
       return is;
+    }
+
+    function isSelected (date) {
+
+      if(vm.startDate && moment(vm.startDate).isSame(date, 'day'))
+        return true;
+      
+      if(vm.endDate && moment(vm.endDate).isSame(date, 'day'))
+        return true;
+
+      return false;
     }
   }
 }
