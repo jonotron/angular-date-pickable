@@ -103,7 +103,6 @@ function jbDatePickableDirective () {
 
     function isInRange (date) {
       if (!vm.selectedDateRange) return false;
-      console.log(vm.selectedDateRange);
       var is = false;
       var is = vm.selectedDateRange.contains(date);
 
