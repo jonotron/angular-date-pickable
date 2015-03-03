@@ -19,16 +19,17 @@ function jbDatePickableDirective () {
     vm.selectDate = selectDate;
     vm.generateWeeks = generateWeeks;
 
+    vm.visibleMonths = 2;
+
     //
     updateVisibleDates();
 
     function updateVisibleDates () {
-      vm.visibleDates = [
-        vm.visibleDate,
-        vm.visibleDate.clone().add(1, 'month').startOf('month')
-      ] 
+      vm.visibleDates = [vm.visibleDate];
+      for(var i = 1; i < vm.visibleMonths; i++) {
+        vm.visibleDates.push(vm.visibleDate.clone().add(i, 'month').startOf('month'));  
+      }
     }
-    
 
     var weeksCache = {};
 
@@ -69,6 +70,32 @@ function jbDatePickableDirective () {
 
     function selectDate(date) {
       console.log('date picked', date) 
+      // both dates are already selected, but user clicked a new date
+      // reset them both
+      if (vm.startDate && vm.endDate) {
+        vm.endDate = null;
+        vm.startDate = null;
+      }
+
+      // both dates are unselected, select the start date
+      if (!vm.startDate && !vm.endDate) {
+        vm.startDate = date;
+        vm.selectedDate = date;
+        return;
+      }
+
+      if (vm.startDate && moment(date).isBefore(vm.startDate)) {
+        vm.endDate = vm.startDate;
+        vm.startDate = date;
+        vm.selectedDate = date;
+        return;
+      }
+
+      if (vm.startDate && moment(date).isAfter(vm.startDate)) {
+        vm.endDate = date;
+        return;
+      }
+
     }
   }
 }
