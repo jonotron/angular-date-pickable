@@ -1,0 +1,13 @@
+table.pickable-month {
+  border-collapse: collapse;
+  border: 1px solid gray;
+}
+
+table.pickable-month td, table.pickable-month th {
+  padding: 3px;
+  width:30px;
+  height: 30px;
+  border: 1px solid #cccccc;
+  vertical-align: middle;
+  text-align: center;
+}
