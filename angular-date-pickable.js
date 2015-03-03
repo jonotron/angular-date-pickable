@@ -18,6 +18,7 @@ function jbDatePickableDirective () {
 
     vm.selectDate = selectDate;
     vm.generateWeeks = generateWeeks;
+    vm.isInRange = isInRange;
 
     vm.visibleMonths = 2;
 
@@ -93,11 +94,20 @@ function jbDatePickableDirective () {
       }
 
       if (vm.startDate && moment(date).isAfter(vm.startDate)) {
-        vm.selectedDateRange = moment().range(vm.startDate, vm.endDate);
         vm.endDate = date;
+        vm.selectedDateRange = moment().range(vm.startDate, vm.endDate);
         return;
       }
 
+    }
+
+    function isInRange (date) {
+      if (!vm.selectedDateRange) return false;
+      console.log(vm.selectedDateRange);
+      var is = false;
+      var is = vm.selectedDateRange.contains(date);
+
+      return is;
     }
   }
 }

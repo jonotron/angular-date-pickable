@@ -11,3 +11,7 @@ table.pickable-month td, table.pickable-month th {
   vertical-align: middle;
   text-align: center;
 }
+
+td.is-in-range {
+  background-color: #ccffcc;
+}
