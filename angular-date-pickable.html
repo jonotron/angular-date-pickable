@@ -1,5 +1,5 @@
 <div style="display: flex; justify-content: space-around;">
-  <table ng-repeat="visibleDate in vm.visibleDates" class="pickable-month">
+  <table ng-repeat="visibleDate in vm.visibleDates" class="pickable__calendar">
     <thead>
       <tr>
         <th colspan="2" ng-click="vm.setPrevMonth()">&lt;</th>
@@ -21,7 +21,7 @@
     <tbody>
       <tr ng-repeat="week in vm.generateWeeks(visibleDate)">
         <td ng-repeat="day in week" ng-click="vm.selectDate(day)" 
-          ng-class="{'is-in-range': vm.isInRange(day), 'is-selected': vm.isSelected(day) }">
+          ng-class="{'pickable__day--in-range': vm.isInRange(day), 'pickable__day--selected': vm.isSelected(day) }">
           {{ day | date:'dd' }}
         </td>
       </tr>

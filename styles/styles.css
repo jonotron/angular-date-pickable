@@ -1,9 +1,9 @@
-table.pickable-month {
+table.pickable__calendar {
   border-collapse: collapse;
   border: 1px solid gray;
 }
 
-table.pickable-month td, table.pickable-month th {
+table.pickable__calendar td, table.pickable__calendar th {
   padding: 3px;
   width:30px;
   height: 30px;
@@ -12,12 +12,12 @@ table.pickable-month td, table.pickable-month th {
   text-align: center;
 }
 
-td.is-in-range {
+.pickable__day--in-range {
   font-weight: bold;
   background-color: #ccffcc;
 }
 
-td.is-selected {
+.pickable__day--selected {
   font-weight: bold;
   box-shadow: inset 0px 0px 0px 2px black;
 }
