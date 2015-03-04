@@ -18,7 +18,8 @@
   <body ng-app="ExampleApp">
     <h2>Date Pickable</h2>
     <jb-date-pickable start-date="startDate" end-date="endDate" selected-date-range="range"
-      selected-date="selectedDate">
+      selected-date="selectedDate"
+      style="display: -webkit-flex; display: flex; -webkit-justify-content: space-around; justify-content: space-around;">
     </jb-date-pickable>
     <div>start: {{ startDate | date: 'MMM dd, yyyy' }}</div>
     <div>end: {{ endDate | date: 'MMM dd, yyyy' }}</div>
