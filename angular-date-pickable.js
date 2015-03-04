@@ -5,12 +5,21 @@ function jbDatePickableDirective () {
   return {
     restrict: 'E',
     templateUrl: '../angular-date-pickable.html',
+    scope: {
+      startDate: '=',
+      endDate: '=',
+      selectedDate: '=',
+      selectedDateRange: '=',
+    },
     controllerAs: 'vm',
-    controller: controller
+    controller: controller,
+    bindToController: true,
   }
 
   function controller ($scope) {
     var vm = this;
+
+    // properties
     vm.visibleDate = moment().startOf('month');
 
     vm.setPrevMonth = setPrevMonth;
@@ -23,7 +32,7 @@ function jbDatePickableDirective () {
 
     vm.visibleMonths = 2;
 
-    //
+    ////
     updateVisibleDates();
 
     function updateVisibleDates () {
@@ -71,7 +80,6 @@ function jbDatePickableDirective () {
     }
 
     function selectDate(date) {
-      console.log('date picked', date) 
       // both dates are already selected, but user clicked a new date
       // reset them both
       if (vm.startDate && vm.endDate) {
