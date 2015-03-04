@@ -1,31 +1,28 @@
-<div style="display: flex; justify-content: space-around;">
-  <table ng-repeat="visibleDate in vm.visibleDates" class="pickable__calendar">
-    <thead>
-      <tr>
-        <th colspan="2" ng-click="vm.setPrevMonth()">&lt;</th>
-        <th colspan="3">{{ visibleDate.toDate() | date:'MMM yyyy'}}</th>
-        <th colspan="2" ng-click="vm.setNextMonth()">&gt;</th>
-      </tr>
+<table ng-repeat="visibleDate in vm.visibleDates" class="pickable__calendar">
+  <thead>
+    <tr>
+      <th colspan="2" ng-click="vm.setPrevMonth()">&lt;</th>
+      <th colspan="3">{{ visibleDate.toDate() | date:'MMM yyyy'}}</th>
+      <th colspan="2" ng-click="vm.setNextMonth()">&gt;</th>
+    </tr>
 
-      <tr>
-        <th>Su</th>
-        <th>Mo</th>
-        <th>Tu</th>
-        <th>We</th>
-        <th>Th</th>
-        <th>Fr</th>
-        <th>Sa</th>
-      </tr>
-    </thead>
+    <tr>
+      <th>Su</th>
+      <th>Mo</th>
+      <th>Tu</th>
+      <th>We</th>
+      <th>Th</th>
+      <th>Fr</th>
+      <th>Sa</th>
+    </tr>
+  </thead>
 
-    <tbody>
-      <tr ng-repeat="week in vm.generateWeeks(visibleDate)">
-        <td ng-repeat="day in week" ng-click="vm.selectDate(day)" 
-          ng-class="{'pickable__day--in-range': vm.isInRange(day), 'pickable__day--selected': vm.isSelected(day) }">
-          {{ day | date:'dd' }}
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
+  <tbody>
+    <tr ng-repeat="week in vm.generateWeeks(visibleDate)">
+      <td ng-repeat="day in week" ng-click="vm.selectDate(day)" 
+        ng-class="{'pickable__day--in-range': vm.isInRange(day), 'pickable__day--selected': vm.isSelected(day) }">
+        {{ day | date:'dd' }}
+      </td>
+    </tr>
+  </tbody>
+</table>
