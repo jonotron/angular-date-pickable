@@ -1,0 +1,29 @@
+{
+  "name": "angular-date-pickable",
+  "version": "0.0.1",
+  "description": "An angular date picker with fewer ui opinions",
+  "main": "angular-date-pickable.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jonotron/angular-date-pickable.git"
+  },
+  "keywords": [
+    "angular",
+    "date",
+    "picker",
+    "pickable",
+    "range"
+  ],
+  "author": {
+    "name": "Jonathan Bowers",
+    "email": "jonotron@gmail.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jonotron/angular-date-pickable/issues"
+  },
+  "homepage": "https://github.com/jonotron/angular-date-pickable"
+}
