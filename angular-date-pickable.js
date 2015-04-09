@@ -36,9 +36,9 @@ function jbDatePickableDirective () {
     updateVisibleDates();
 
     function updateVisibleDates () {
-      vm.visibleDates = [vm.visibleDate];
+      vm.visibleDates = [moment(vm.visibleDate.toDate())];
       for(var i = 1; i < vm.visibleMonths; i++) {
-        vm.visibleDates.push(vm.visibleDate.clone().add(i, 'month').startOf('month'));  
+        vm.visibleDates.push(moment(vm.visibleDate.toDate()).add(i, 'month').startOf('month'));
       }
     }
 
