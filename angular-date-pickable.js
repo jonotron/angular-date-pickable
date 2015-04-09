@@ -34,6 +34,7 @@ function jbDatePickableDirective () {
 
     ////
     updateVisibleDates();
+    updateSelectedDateRange(vm.startDate, vm.endDate);
 
     function updateVisibleDates () {
       vm.visibleDates = [moment(vm.visibleDate.toDate())];
@@ -98,17 +99,25 @@ function jbDatePickableDirective () {
       if (vm.startDate && moment(date).isBefore(vm.startDate)) {
         vm.endDate = vm.startDate;
         vm.startDate = date;
-        vm.selectedDateRange = moment().range(vm.startDate, vm.endDate);
+        vm.updateSelectedDateRange(vm.startDate, vm.endDate);
         vm.selectedDate = date;
         return;
       }
 
       if (vm.startDate && moment(date).isAfter(vm.startDate)) {
         vm.endDate = date;
-        vm.selectedDateRange = moment().range(vm.startDate, vm.endDate);
+        vm.updateSelectedDateRange(vm.startDate, vm.endDate);
         return;
       }
 
+    }
+
+    function updateSelectedDateRange (start, end) {
+      if (start && end)
+        vm.selectedDateRange = moment().range(
+            moment(start).startOf('day'),
+            moment(end).endOf('day')
+          );
     }
 
     function isInRange (date) {
