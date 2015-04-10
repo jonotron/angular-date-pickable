@@ -99,14 +99,14 @@ function jbDatePickableDirective () {
       if (vm.startDate && moment(date).isBefore(vm.startDate)) {
         vm.endDate = vm.startDate;
         vm.startDate = date;
-        vm.updateSelectedDateRange(vm.startDate, vm.endDate);
+        updateSelectedDateRange(vm.startDate, vm.endDate);
         vm.selectedDate = date;
         return;
       }
 
       if (vm.startDate && moment(date).isAfter(vm.startDate)) {
         vm.endDate = date;
-        vm.updateSelectedDateRange(vm.startDate, vm.endDate);
+        updateSelectedDateRange(vm.startDate, vm.endDate);
         return;
       }
 
