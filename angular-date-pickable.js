@@ -21,6 +21,8 @@ function jbDatePickableDirective () {
 
     // properties
     vm.visibleDate = moment().startOf('month');
+    vm.selectStartDate = moment(vm.startDate).toDate(); //  Cloned dates
+    vm.selectEndDate = moment(vm.endDate).toDate();
 
     vm.setPrevMonth = setPrevMonth;
     vm.setNextMonth = setNextMonth;
@@ -83,39 +85,48 @@ function jbDatePickableDirective () {
     function selectDate(date) {
       // both dates are already selected, but user clicked a new date
       // reset them both
-      if (vm.startDate && vm.endDate) {
-        vm.endDate = null;
-        vm.startDate = null;
+      if (vm.selectStartDate && vm.selectEndDate) {
+        vm.selectEndDate = null;
+        vm.selectStartDate = null;
         vm.selectedDateRange = null;
       }
 
       // both dates are unselected, select the start date
-      if (!vm.startDate && !vm.endDate) {
-        vm.startDate = date;
+      if (!vm.selectStartDate && !vm.selectEndDate) {
+        vm.selectStartDate = date;
         vm.selectedDate = date;
         return;
       }
 
-      if (vm.startDate && moment(date).isBefore(vm.startDate)) {
-        vm.endDate = vm.startDate;
-        vm.startDate = date;
+      if (vm.selectStartDate && moment(date).isBefore(vm.selectStartDate)) {
+        vm.selectEndDate = vm.selectStartDate;
+        vm.selectStartDate = date;
         vm.selectedDate = date;
+        updateSelectedDateRange();
         return;
       }
 
-      if (vm.startDate && moment(date).isAfter(vm.startDate)) {
-        vm.endDate = date;
+      if (vm.selectStartDate && moment(date).isAfter(vm.selectStartDate)) {
+        vm.selectEndDate = date;
+        updateSelectedDateRange();
         return;
       }
 
     }
 
-    function updateSelectedDateRange (start, end) {
-      if (start && end)
+    function updateSelectedDateRange () {
+      if (vm.selectStartDate && vm.selectEndDate) {
         vm.selectedDateRange = moment().range(
-            moment(start).startOf('day'),
-            moment(end).endOf('day')
+            moment(vm.selectStartDate).startOf('day'),
+            moment(vm.selectEndDate).endOf('day')
           );
+
+        if (vm.startDate !== vm.selectStartDate)
+          vm.startDate = vm.selectStartDate;
+
+        if (vm.endDate !== vm.selectEndDate)
+          vm.endDate = vm.selectEndDate;
+      }
     }
 
     function isInRange (date) {
@@ -128,10 +139,10 @@ function jbDatePickableDirective () {
 
     function isSelected (date) {
 
-      if(vm.startDate && moment(vm.startDate).isSame(date, 'day'))
+      if(vm.selectStartDate && moment(vm.selectStartDate).isSame(date, 'day'))
         return true;
       
-      if(vm.endDate && moment(vm.endDate).isSame(date, 'day'))
+      if(vm.selectEndDate && moment(vm.selectEndDate).isSame(date, 'day'))
         return true;
 
       return false;
@@ -141,14 +152,20 @@ function jbDatePickableDirective () {
     $scope.$watch(
       'vm.startDate',
       function(newStartDate, oldStartDate) {
-        updateSelectedDateRange(vm.startDate, vm.endDate);
+        if (newStartDate !== oldStartDate) {
+          vm.selectStartDate = vm.startDate;
+          _.debounce(updateSelectedDateRange, 100);
+        }
       }
     );
 
     $scope.$watch(
       'vm.endDate',
       function(newEndDate, oldEndDate) {
-        updateSelectedDateRange(vm.startDate, vm.endDate);
+        if (newEndDate !== oldEndDate) {
+          vm.selectEndDate = vm.endDate;
+          _.debounce(updateSelectedDateRange, 100)();
+        }
       }
     );
   }
