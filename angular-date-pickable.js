@@ -152,9 +152,9 @@ function jbDatePickableDirective () {
     $scope.$watch(
       'vm.startDate',
       function(newStartDate, oldStartDate) {
-        if (newStartDate !== oldStartDate) {
+        if (newStartDate !== oldStartDate && newStartDate !== vm.selectStartDate) {
           vm.selectStartDate = vm.startDate;
-          _.debounce(updateSelectedDateRange, 100);
+          _.debounce(updateSelectedDateRange, 100)();
         }
       }
     );
@@ -162,7 +162,7 @@ function jbDatePickableDirective () {
     $scope.$watch(
       'vm.endDate',
       function(newEndDate, oldEndDate) {
-        if (newEndDate !== oldEndDate) {
+        if (newEndDate !== oldEndDate && newEndDate !== vm.selectEndDate) {
           vm.selectEndDate = vm.endDate;
           _.debounce(updateSelectedDateRange, 100)();
         }
