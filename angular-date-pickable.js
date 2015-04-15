@@ -148,13 +148,20 @@ function jbDatePickableDirective () {
       return false;
     }
 
+    var debounceUpdateSelectedDateRange = _.debounce(function() {
+      updateVisibleDates();
+      updateSelectedDateRange();
+    }, 100);
+
     //  Watch for start and end date changes
     $scope.$watch(
       'vm.startDate',
       function(newStartDate, oldStartDate) {
         if (newStartDate !== oldStartDate && newStartDate !== vm.selectStartDate) {
+          vm.visibleDate = moment(vm.startDate).startOf('month');
           vm.selectStartDate = vm.startDate;
-          _.debounce(updateSelectedDateRange, 100)();
+
+          debounceUpdateSelectedDateRange();
         }
       }
     );
@@ -163,8 +170,10 @@ function jbDatePickableDirective () {
       'vm.endDate',
       function(newEndDate, oldEndDate) {
         if (newEndDate !== oldEndDate && newEndDate !== vm.selectEndDate) {
+          vm.visibleDate = moment(vm.endDate).startOf('month');
           vm.selectEndDate = vm.endDate;
-          _.debounce(updateSelectedDateRange, 100)();
+
+          debounceUpdateSelectedDateRange();
         }
       }
     );
