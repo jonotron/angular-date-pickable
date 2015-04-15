@@ -148,6 +148,10 @@ function jbDatePickableDirective () {
       return false;
     }
 
+    //  The updateSelectedDateRange and updateVisibleDates functions need to be
+    //  debounced because when both the start and end dates are changed at the
+    //  same time, the first watch would stop the second from executing and the
+    //  end date would not be set.
     var debounceUpdateSelectedDateRange = _.debounce(function() {
       updateVisibleDates();
       updateSelectedDateRange();
