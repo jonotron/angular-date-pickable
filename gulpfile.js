@@ -27,3 +27,7 @@ gulp.task('templates', function() {
 gulp.task('clean', ['templates', 'dist'], function() {
   return del(['build']);
 });
+
+gulp.task('watch', ['build'], function() {
+  gulp.watch('angular-date-pickable.*', ['build']);
+});
