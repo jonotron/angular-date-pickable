@@ -183,3 +183,5 @@ function jbDatePickableDirective () {
     );
   }
 }
+
+angular.module("jbDatePickable").run(["$templateCache", function($templateCache) {$templateCache.put("angular-date-pickable.html","<table ng-repeat=\"visibleDate in vm.visibleDates\" class=\"pickable__calendar\">\n  <thead>\n    <tr>\n      <th colspan=\"2\" ng-click=\"vm.setPrevMonth()\">&lt;</th>\n      <th colspan=\"3\">{{ visibleDate.toDate() | date:\'MMM yyyy\'}}</th>\n      <th colspan=\"2\" ng-click=\"vm.setNextMonth()\">&gt;</th>\n    </tr>\n\n    <tr>\n      <th>Su</th>\n      <th>Mo</th>\n      <th>Tu</th>\n      <th>We</th>\n      <th>Th</th>\n      <th>Fr</th>\n      <th>Sa</th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr ng-repeat=\"week in vm.generateWeeks(visibleDate)\">\n      <td ng-repeat=\"day in week\" ng-click=\"vm.selectDate(day)\" \n        ng-class=\"{\'pickable__day--in-range\': vm.isInRange(day), \'pickable__day--selected\': vm.isSelected(day) }\">\n        {{ day | date:\'dd\' }}\n      </td>\n    </tr>\n  </tbody>\n</table>\n");}]);

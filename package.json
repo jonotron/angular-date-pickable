@@ -25,5 +25,14 @@
   "bugs": {
     "url": "https://github.com/jonotron/angular-date-pickable/issues"
   },
-  "homepage": "https://github.com/jonotron/angular-date-pickable"
+  "homepage": "https://github.com/jonotron/angular-date-pickable",
+  "devDependencies": {
+    "del": "^1.1.1",
+    "gulp": "^3.8.11",
+    "gulp-angular-templatecache": "^1.6.0",
+    "gulp-clean": "^0.3.1",
+    "gulp-concat": "^2.5.2",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.2.0"
+  }
 }
