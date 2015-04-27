@@ -10,6 +10,7 @@ function jbDatePickableDirective () {
       endDate: '=',
       selectedDate: '=',
       selectedDateRange: '=',
+      visibleMonths: '='
     },
     controllerAs: 'vm',
     controller: controller,
@@ -32,15 +33,13 @@ function jbDatePickableDirective () {
     vm.isInRange = isInRange;
     vm.isSelected = isSelected;
 
-    vm.visibleMonths = 2;
-
     ////
     updateVisibleDates();
     updateSelectedDateRange(vm.startDate, vm.endDate);
 
     function updateVisibleDates () {
       vm.visibleDates = [moment(vm.visibleDate.toDate())];
-      for(var i = 1; i < vm.visibleMonths; i++) {
+      for(var i = 1; i < (vm.visibleMonths || 2); i++) {
         vm.visibleDates.push(moment(vm.visibleDate.toDate()).add(i, 'month').startOf('month'));
       }
     }
