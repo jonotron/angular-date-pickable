@@ -10,6 +10,7 @@ function jbDatePickableDirective () {
       endDate: '=',
       selectedDate: '=',
       selectedDateRange: '=',
+      visibleMonths: '='
     },
     controllerAs: 'vm',
     controller: controller,
@@ -18,6 +19,8 @@ function jbDatePickableDirective () {
 
   function controller ($scope) {
     var vm = this;
+
+    const DEFAULT_VISIBLE_MONTHS = 1;
 
     // properties
     vm.visibleDate = moment().startOf('month');
@@ -31,8 +34,7 @@ function jbDatePickableDirective () {
     vm.generateWeeks = generateWeeks;
     vm.isInRange = isInRange;
     vm.isSelected = isSelected;
-
-    vm.visibleMonths = 2;
+    vm.visibleMonths = vm.visibleMonths || DEFAULT_VISIBLE_MONTHS;
 
     ////
     updateVisibleDates();
