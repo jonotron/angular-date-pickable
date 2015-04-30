@@ -34,7 +34,6 @@ function jbDatePickableDirective () {
     vm.generateWeeks = generateWeeks;
     vm.isInRange = isInRange;
     vm.isSelected = isSelected;
-    vm.visibleMonths = vm.visibleMonths || DEFAULT_VISIBLE_MONTHS;
 
     ////
     updateVisibleDates();
@@ -42,7 +41,7 @@ function jbDatePickableDirective () {
 
     function updateVisibleDates () {
       vm.visibleDates = [moment(vm.visibleDate.toDate())];
-      for(var i = 1; i < vm.visibleMonths; i++) {
+      for(var i = 1; i < (vm.visibleMonths || DEFAULT_VISIBLE_MONTHS); i++) {
         vm.visibleDates.push(moment(vm.visibleDate.toDate()).add(i, 'month').startOf('month'));
       }
     }
