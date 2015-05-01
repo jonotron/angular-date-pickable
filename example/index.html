@@ -10,13 +10,12 @@
     <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/moment-range/1.0.7/moment-range.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular.min.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.8.0/lodash.min.js"></script>
     <script src="/dist/angular-date-pickable.js"></script>
 
     <script src="example.js"></script>
   </head>
 
-  <body ng-app="ExampleApp">
+  <body ng-app="ExampleApp" ng-controller="exampleCtrl">
     <h2>Date Pickable</h2>
     <jb-date-pickable start-date="startDate" end-date="endDate" selected-date-range="range"
       selected-date="selectedDate"
@@ -26,5 +25,10 @@
     <div>end: {{ endDate | date: 'MMM dd, yyyy' }}</div>
     <div>range: {{ range | json }}</div>
     <div>selected: {{ selectedDate | date: 'MMM dd, yyyy'}}</div>
+
+    <button ng-click="startDate = momentDate('2015-04-01')">Start = April 1</button>
+    <button ng-click="endDate = momentDate('2015-04-30')">End = April 30</button>
+
+    <button ng-click="startDate = momentDate('2015-05-01'); endDate = momentDate('2015-05-31')">May</button>
   </body>
 </html>
