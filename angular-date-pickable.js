@@ -34,6 +34,7 @@ function jbDatePickableDirective () {
     vm.generateWeeks = generateWeeks;
     vm.isInRange = isInRange;
     vm.isSelected = isSelected;
+    vm.isSame = isSame;
 
     ////
     updateVisibleDates();
@@ -147,6 +148,11 @@ function jbDatePickableDirective () {
         return true;
 
       return false;
+    }
+
+    function isSame (unit, date, compare) {
+      console.log('isSame');
+      return moment(date).isSame(compare, unit); 
     }
 
     $scope.$watchGroup(['vm.startDate', 'vm.endDate'], function watchDates(newVals) {

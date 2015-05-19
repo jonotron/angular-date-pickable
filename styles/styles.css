@@ -21,3 +21,7 @@ table.pickable__calendar td, table.pickable__calendar th {
   font-weight: bold;
   box-shadow: inset 0px 0px 0px 2px black;
 }
+
+.pickable__day--not-same {
+  color: #ccc;
+}
