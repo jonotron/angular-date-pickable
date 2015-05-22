@@ -151,7 +151,6 @@ function jbDatePickableDirective () {
     }
 
     function isSame (unit, date, compare) {
-      console.log('isSame');
       return moment(date).isSame(compare, unit); 
     }
 
