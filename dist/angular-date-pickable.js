@@ -20,7 +20,7 @@ function jbDatePickableDirective () {
   function controller ($scope) {
     var vm = this;
 
-    const DEFAULT_VISIBLE_MONTHS = 1;
+    var DEFAULT_VISIBLE_MONTHS = 1;
 
     // properties
     vm.visibleDate = moment().startOf('month');
